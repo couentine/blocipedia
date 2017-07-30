@@ -1,0 +1,21 @@
+<h1>Edit your Wiki</h1>
+
+<p>Guidelines</p>
+
+<ul>
+     <li>The incessant use of hashtags will get you banned.</li>
+    <li>Never wiki after an open bar</li>
+</ul>
+
+ <div class="form">
+ <%= form_for @wiki do |f| %>
+   <%= f.label :title %>
+   <%= f.text_field :title, placeholder: "Enter your title" %>
+ 
+   <%= f.label :body %>
+   <%= f.text_area :body, placeholder: "Enter your text" %>
+ 
+   <%= f.submit "Save" %>
+ <% end %>
+ 
+ </div>
