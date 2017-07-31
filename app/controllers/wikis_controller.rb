@@ -15,7 +15,7 @@ skip_before_action :authenticate_user!, only: [:index, :show]
   
   def create
     
-  @wiki = Wiki.new
+   @wiki = current_user.wikis.create(wiki_params)
   @wiki.title = params[:wiki][:title]
   @wiki.body = params[:wiki][:body]
   
@@ -67,4 +67,10 @@ end
 
 
   end
+  
+  
+    def wiki_params
+    params.require(:wiki).permit(:title, :body, :public)
+end
+  
 end
