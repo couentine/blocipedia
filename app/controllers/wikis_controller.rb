@@ -11,6 +11,7 @@ skip_before_action :authenticate_user!, only: [:index, :show]
 
   def new
     @wiki = Wiki.new
+    authorize @wiki
   end
   
   def create
@@ -18,6 +19,8 @@ skip_before_action :authenticate_user!, only: [:index, :show]
    @wiki = current_user.wikis.create(wiki_params)
   @wiki.title = params[:wiki][:title]
   @wiki.body = params[:wiki][:body]
+  @wiki.user = current_user
+  authorize @wiki
   
   if @wiki.save
     flash[:notice] = 'Your Wiki has been saved.'
@@ -35,6 +38,7 @@ end
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
   
   def update
@@ -54,6 +58,7 @@ end
   
   end
   def destroy
+    authorize @wiki
     @wiki = Wiki.find(params[:id])
 
     if @wiki.destroy
