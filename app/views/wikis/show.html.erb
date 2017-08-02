@@ -2,7 +2,10 @@
 
 <p><%= @wiki.body %></p>
 
-<p>by <%= @wiki.user.username %></p>
+<p>by <%= @wiki.user.username.capitalize  %></p>
 
+
+<% if policy(@wiki).update? %>
  <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
  <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
+ <%end%>
