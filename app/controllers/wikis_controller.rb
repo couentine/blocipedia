@@ -58,7 +58,6 @@ end
   
   end
   def destroy
-    
     @wiki = Wiki.find(params[:id])
     authorize @wiki
 

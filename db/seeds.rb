@@ -1,39 +1,53 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'random_data'
 
+# Create Wikis
 20.times do
-    Wiki.create!(
-        title: RandomData.random_sentence,
-        body: RandomData.random_paragraph,
-        private: false
-    )
+  Wiki.create!(
+    title:  RandomData.random_sentence,
+    body:   RandomData.random_paragraph
+  )
 end
-
 wikis = Wiki.all
 
-member = User.create!(
-    email: 'member@example.com',
-    password: 'password',
-)
+# Create users
+5.times do
+  User.create!(
+  #username:     RandomData.random_name,
+  email:    RandomData.random_email,
+  password: RandomData.random_sentence
+  )
+end
+users = User.all
 
+# Create standard user
+standard = User.create!(
+  #username:     'Standard User',
+  email:    'standard@example.com',
+  password: 'helloworld',
+)
+standard.skip_confirmation!
+standard.save!
+
+# Create premium user
 premium = User.create!(
-    email: 'premium@example.com',
-    password: 'password',
-    role: 'premium'
+  #username:     'Premium User',
+  email:    'premium@example.com',
+  password: 'helloworld',
+  role:     'premium'
 )
+premium.skip_confirmation!
+premium.save!
 
+# Create admin user
 admin = User.create!(
-    email: 'admin@example.com',
-    password: 'password',
-    role: 'admin'
+  username: 'Admin User',
+  email:    'admin@example.com',
+  password: 'helloworld',
+  role:     'admin'
 )
+admin.skip_confirmation!
+admin.save!
 
 puts "Seed finished"
-puts "#{Wiki.count} Wikis created"
-puts "#{User.count} Users created"
+puts "{Wiki.count} wikis created"
+puts "{User.count} users created"
