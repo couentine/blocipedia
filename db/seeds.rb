@@ -2,6 +2,7 @@ require 'random_data'
 
 5.times do
     user = User.create!(
+        username: Faker::StarWars.character,
         email: Faker::Internet.email,
         password: Faker::Internet.password
     )
@@ -12,7 +13,7 @@ users = User.all
 10.times do
     wiki = Wiki.create!(
         user: users.sample,
-        title: Faker::StarWars.character,
+        title: Faker::StarWars.specie,
         body: Faker::StarWars.quote,
         private: Faker::Boolean.boolean
     )
