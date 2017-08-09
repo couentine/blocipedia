@@ -2,9 +2,9 @@
 
 <p>
   <% if current_user.premium?%>
-    You are Premium Member  <%= current_user.username %>
+    You are a <b>Premium Member</b>  <%= current_user.username %>
     <% elsif current_user.member? %>
-    You are a Free Member  <%= current_user.username %>
+    You are a <b>Free Member</b>  <%= current_user.username %>
     <%end%>
   
   

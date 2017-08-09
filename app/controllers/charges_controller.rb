@@ -35,16 +35,11 @@ class ChargesController < ApplicationController
     end
     
     def downgrade
-        current_user.update_attribute(:role, 'member')
+        current_user.member!(:role, 'member')
         
-        if current_user.save
             flash[:notice] = "You have successfully downgraded your account!"
             redirect_to root_path
-        
-        else
-            flash[:error] = "There as an issue downgrading your account."
-            redirect_to root_path
-        end
+
     end
     
     
