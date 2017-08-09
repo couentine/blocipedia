@@ -48,5 +48,12 @@ private
         current_user.update_attribute(:role, 'premium')
         current_user.save!
     end
+    
+    
+     def publicize
+        current_user.wikis.each do |wiki|
+          wiki.update_attribute(:private, false)
+      end
+ end
         
 end

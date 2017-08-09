@@ -2,6 +2,8 @@ class WikisController < ApplicationController
 skip_before_action :authenticate_user!, only: [:index, :show]
   
   def index
+    @public_wikis = Wiki.where(private:false)
+    @private_wikis = Wiki.where(private:true)
     @wikis = Wiki.all
   end
 
@@ -75,7 +77,7 @@ end
   
   
     def wiki_params
-    params.require(:wiki).permit(:title, :body, :public)
+    params.require(:wiki).permit(:title, :body, :private)
 end
   
 end
