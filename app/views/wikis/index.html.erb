@@ -1,19 +1,22 @@
-<h1>This is all the Wikis</h1>
+<h1>Public Wikis</h1>
 
-<div class="new-wiki">
-<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+<div class="col-md-4">
+        <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+</div>
 
-<h1>Free Wikis</h1>
-
-
-
-<% @public_wikis.each do |wiki| %>
-<div class="media">
-     <div class="media-body">
-       <h4 class="media-heading">
-             </div>
-         <% end %>
-     </div>
+<div class="row">
+    <div class="col-md-8">
+        <% @public_wikis.each do |wiki| %>
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <%= link_to markdown(wiki.title), wiki %>
+                    </h4>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
 
 <% if current_user.admin? || current_user.premium? %>
     <h1>Private Wikis</h1>
@@ -24,15 +27,11 @@
                 <div class="media">
                     <div class="media-body">
                         <h4 class="media-heading">
-                            <%= link_to wiki.title, wiki %>
+                            <%= link_to markdown(wiki.title), wiki %>
                         </h4>
                     </div>
                 </div>
-
+            <% end %>
         </div>
     </div>
-                    
-                <% else %>
-                <p> You need to be log in for see this page</p>
-            <% end %>
 <% end %>
