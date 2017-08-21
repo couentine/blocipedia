@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
          has_many :wikis
+         has_many :collaborators
          
 
   before_save { self.email = email.downcase }

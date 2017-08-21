@@ -1,17 +1,17 @@
 <h1><%= @wiki.title %> </h1>
 
- <p><%= markdown(@wiki.body) %></p>
- 
-<p><% @wiki.private %></p>
+<p><%= @wiki.body %></p>
 
 <p>by <%= @wiki.user.username %></p>
 
- <% if policy(@wiki).edit? %>
-            <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
-        <% end %>
+<h4>Wiki Collaborators:</h4>
+     <% if @wiki.collaborators.any? %>
+      <% @wiki.collaborators.each do |c| %>
+         <h6 class="text-muted">
+          <%= @wiki.user.username %>
+
         
-        <% if policy(@wiki).destroy? %>
-            <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
         <% end %>
-    </div>
-</div>
+                   <%= link_to "Manage collaborators", wiki_collaborators_path(@wiki), class: "btn btn-info" %>
+        <% end %>
+   

@@ -1,7 +1,7 @@
-include WikisHelper
-
 class WikisController < ApplicationController
 skip_before_action :authenticate_user!, only: [:index, :show]
+include ApplicationHelper
+include WikisHelper
   
   def index
     @public_wikis = Wiki.where(private:false)
@@ -11,6 +11,7 @@ skip_before_action :authenticate_user!, only: [:index, :show]
 
   def show
     @wiki = Wiki.find(params[:id])
+    @users = Collaborator.all
   end
 
   def new
