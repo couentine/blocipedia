@@ -8,7 +8,7 @@
      <% if @wiki.collaborators.any? %>
       <% @wiki.collaborators.each do |c| %>
          <h6 class="text-muted">
-          <%= @wiki.user.username %>
+          <%= c.user.username %>
 
         
         <% end %>
